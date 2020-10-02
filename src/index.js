@@ -1,15 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import * as mod from './App';
+import App from './App';
 import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(
   <React.StrictMode>
-    <mod.itemSpawn/>
-    <mod.Game />
-    <mod.shipDiv/>
-
+    <App />
   </React.StrictMode>,
   document.getElementById('root')
 );
