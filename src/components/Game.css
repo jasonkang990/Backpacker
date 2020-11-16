@@ -1,6 +1,4 @@
 .game {
-  display: flex;
-  flex-direction: row;
-  position: absolute;
-  right: 50%;
+  position: relative;
+  right: -20%;
 }

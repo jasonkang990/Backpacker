@@ -3,22 +3,16 @@ import Draggable from 'react-draggable';
 import Square from './Square';
 
 export default class Item extends React.Component {
-  eventLogger = (e, data) => {
-    console.log('Event: ', e);
-    console.log('Data: ', data);
-  };
-
   render() {
+    const dragHandlers = {onStart: this.onStart, onStop: this.onStop};
     return (
       <Draggable
-        handle=".handle"
-        defaultPosition={{x: 0, y: 0}}
-        position={null}
-        onStart={this.handleStart}
-        onDrag={this.handleDrag}
-        onStop={this.handleStop}>
+        defaultPosition={{x: -4, y: -21}}
+        grid={[99, 99]}
+        {...dragHandlers}
+      >
         <div>
-          <div className="handle"><Square className="item-square"/></div>
+          <Square className="item-square"/>
         </div>
       </Draggable>
     )
