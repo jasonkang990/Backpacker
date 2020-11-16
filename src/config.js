@@ -1,5 +1,5 @@
-const noSquares = 25;
-const noRow = 5;
+const noSquares = 36;
+const noRow = Math.sqrt(noSquares);
 
 export {
   noSquares, noRow

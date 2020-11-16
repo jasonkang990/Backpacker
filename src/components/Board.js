@@ -11,8 +11,7 @@ export default class Board extends React.Component {
   }
 
   render() {
-    let rows = [];
-    let row = [];
+    let rows = [], row = [];
 
     for (let i = 0; i < noSquares; i++) {
       row.push(this.renderSquare(i));
