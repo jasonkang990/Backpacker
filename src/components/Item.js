@@ -18,7 +18,7 @@ export default class Item extends React.Component {
         onDrag={this.handleDrag}
         onStop={this.handleStop}>
         <div>
-          <div className="handle"><Square /></div>
+          <div className="handle"><Square className="item-square"/></div>
         </div>
       </Draggable>
     )

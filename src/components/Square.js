@@ -1,8 +1,13 @@
 import React from 'react';
 import './Square.css';
 
-export default function Square(props) {
-  return (
-    <button className="square"></button>
-  );
+export default class Square extends React.Component {
+  render() {
+    return (
+      <button
+        className={`square ${this.props.className}`}
+        id={this.props.id}
+      ></button>
+    );
+  }
 }
