@@ -1,3 +1,7 @@
+.board {
+  position: relative;
+}
+
 .board-row:after {
   clear: both;
   content: "";
