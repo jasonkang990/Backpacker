@@ -44,7 +44,10 @@ export default class Item extends React.Component {
         }
       }
       rows.push(
-        <div key={`itemrow-${i}`}>
+        <div
+          className="board-row"
+          key={`itemrow-${i}`}
+        >
           {[...row]}
         </div>
       );
