@@ -7,15 +7,27 @@ export default class Item extends React.Component {
   constructor(props) {
     super(props);
     this.shape = shapes[Math.floor(Math.random() * shapes.length)];
+
+    // let score = 0;
+    // for (let j = 0; j < this.shape.length; j++) {
+    //   score += this.shape[j].reduce(function (sum, string) {
+    //       if (string !== 'w') {
+    //         return sum + 10;
+    //       } else {
+    //         return sum;
+    //       }
+    //   });
+    // }
+    // this.score = score;
   }
 
-  renderSquare(i, transparent=false) {
+  renderSquare(i, color, transparent=false) {
     if (transparent) {
       return (
         <Square
           id={`itembox-${i}`}
           key={`itembox-${i}`}
-          className="item-square square-transparent"
+          className= "item-square square-transparent"
         />
       );
     } else {
@@ -23,12 +35,14 @@ export default class Item extends React.Component {
         <Square
           id={`itembox-${i}`}
           key={`itembox-${i}`}
-          className="item-square"
+          className= {`item-square ${color}`}
         />
       );
     }
   }
-
+  onStop = (ev) => {
+    console.log(ev.target.parent);
+  }
   render() {
     const dragHandlers = {onStart: this.onStart, onStop: this.onStop};
     let rows = [], row = [];
@@ -37,10 +51,10 @@ export default class Item extends React.Component {
 
     for (let i = 0; i < nRow; i++) {
       for (let j = 0; j < nCol; j++) {
-        if (this.shape[i][j]) {
-          row.push(this.renderSquare(i * nRow + j));
+        if (this.shape[i][j] !== 'w') {
+          row.push(this.renderSquare(i * nRow + j, this.shape[i][j], false ));
         } else {
-          row.push(this.renderSquare(i * nRow + j, true));
+          row.push(this.renderSquare(i * nRow + j, this.shape[i][j], true));
         }
       }
       rows.push(

@@ -10,9 +10,16 @@
 .square:focus {
   outline: none;
 }
-
+.m {
+  background: #FFFB06;
+}
+.g {
+  background: #A7A29E;
+}
+.b {
+  background: #67340B;
+}
 .item-square {
-  background: yellowgreen;
   margin-top: -1px;
 }
 
