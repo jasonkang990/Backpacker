@@ -1,11 +1,7 @@
 .ship {
-  background:red;
-  border: 2px solid black;
   height: 100px;
   width: 100px;
-  margin:auto;
-  padding: 20px;
   position: absolute;
-  top: 40%;
-  right: 40%;
+  top: 47.6%;
+  right: 30%;
 }

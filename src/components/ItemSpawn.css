@@ -1,11 +1,9 @@
 .itemSpawn {
-  background: blue;
-  border: 2px solid black;
-  height: 400px;
-  width: 300px;
-  margin:auto;
+  border: 10px solid black;
+  height: 600px;
+  width: 600px;
   padding: 20px;
   position: absolute;
-  left: 1%;
+  left: 3%;
   z-index: 999;
 }
