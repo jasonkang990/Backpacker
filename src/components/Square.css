@@ -8,11 +8,19 @@
   position: relative;
 }
 
+.square:focus {
+  outline: none;
+}
+
 .item-square {
   background: yellowgreen;
   position: relative;
 }
 
-.square:focus {
+.square-transparent {
+  background-color: Transparent;
+  background-repeat: no-repeat;
+  border: none;
+  overflow: hidden;
   outline: none;
 }
