@@ -3,6 +3,7 @@ import Square from './Square';
 import './Board.css';
 import { noSquares, noRow } from '../config';
 
+let arr = [];
 export default class Board extends React.Component {
   constructor(props) {
     super(props);
@@ -10,17 +11,17 @@ export default class Board extends React.Component {
       board: new Array(noSquares).fill(1)
     }
   }
-
   renderSquare(i, filled=false) {
     if (filled) {
       return (
         <Square
           id={`square-${i}`}
           key={`board-${i}`}
-          className="square-filled"
+          className="square-filled taken"
         />
       )
     }
+    
     return (
       <Square id={`square-${i}`} key={`board-${i}`}/>
     );
@@ -31,6 +32,7 @@ export default class Board extends React.Component {
 
     for (let i = 0; i < noSquares; i++) {
       if (this.state.board[i]) {
+    
         row.push(this.renderSquare(i));
       } else {
         row.push(this.renderSquare(i), true);
@@ -47,7 +49,7 @@ export default class Board extends React.Component {
         row.length = 0;
       }
     }
-
+    
     return (
       <div className="board">{rows}</div>
     );

@@ -1,15 +1,14 @@
 import React from 'react';
 import './Square.css';
 
-export default class Square extends React.Component {
-
+export default class ItemSquare extends React.Component {
+  
   render() {
     
     return (
       <div
-        className={`square taken ${this.props.className || ''}`}
+        className={`square ${this.props.className || ''}`}
         id={this.props.id}
-        
       ></div>
     );
   }

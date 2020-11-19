@@ -1,12 +1,13 @@
 .square {
   background: burlywood;
-  border-color: white;
+  border: 2px solid black;
 
   margin-top: -1px;
   width: 16%;
   height: 16%;
   min-width: 100px;
   min-height: 100px;
+
 }
 
 .square:focus {
@@ -37,7 +38,8 @@
 .item-square {
   width: 16%;
   height: 16%;
-  min-width: 97px;
-  min-height: 97px;
+  min-width: 90px;
+  min-height: 90px;
   margin: 1px;
+  
 }

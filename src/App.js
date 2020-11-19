@@ -11,7 +11,7 @@ export default class App extends React.Component {
   render() {
     return (
       <>
-      <DndProvider backend = {HTML5Backend}>
+      
       <div className = "outer container">
         <div className = "flex-container" id = "overContainer">
         <ItemSpawn />
@@ -19,7 +19,7 @@ export default class App extends React.Component {
         </div>
         <Ship />
       </div>
-      </DndProvider>
+      
       </>
     );
   }
