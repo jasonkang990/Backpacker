@@ -1,10 +1,12 @@
 .square {
   background: burlywood;
   border-color: white;
-  height: 100px;
+
   margin-top: -1px;
-  width: 100px;
-  position: relative;
+  width: 16%;
+  height: 16%;
+  min-width: 100px;
+  min-height: 100px;
 }
 
 .square:focus {
@@ -19,9 +21,6 @@
 .b {
   background: #67340B;
 }
-.item-square {
-  margin-top: -1px;
-}
 
 .square-transparent {
   background-color: Transparent;
@@ -34,4 +33,11 @@
 
 .square-filled {
   background: black;
+}
+.item-square {
+  width: 16%;
+  height: 16%;
+  min-width: 97px;
+  min-height: 97px;
+  margin: 1px;
 }

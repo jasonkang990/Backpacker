@@ -12,7 +12,7 @@ export default class ItemSpawn extends React.Component {
   
   render() {
     return (
-      <div className="itemSpawn">
+      <div className="itemSpawn inBox">
         <Item />
       </div>
     )

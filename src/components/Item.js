@@ -40,20 +40,26 @@ export default class Item extends React.Component {
       );
     }
   }
-  onStop = (ev) => {
-    console.log(ev.target.parent);
+  onStop = (ev, data) => {
+  
+    console.log(data.node);
+    let x = data.x;
+    let y = data.y;
+    console.log("X: " + x + " Y: " + y);
+    data.node.cancel = ".body";
   }
   render() {
     const dragHandlers = {onStart: this.onStart, onStop: this.onStop};
     let rows = [], row = [];
     let nRow = this.shape.length;
     let nCol = this.shape[0].length;
-
     for (let i = 0; i < nRow; i++) {
       for (let j = 0; j < nCol; j++) {
         if (this.shape[i][j] !== 'w') {
+          
           row.push(this.renderSquare(i * nRow + j, this.shape[i][j], false ));
         } else {
+          
           row.push(this.renderSquare(i * nRow + j, this.shape[i][j], true));
         }
       }
@@ -70,11 +76,13 @@ export default class Item extends React.Component {
 
     return (
       <Draggable
-        defaultPosition={{x: -53, y: -31}}
-        grid={[99, 99]}
+        
+        
         {...dragHandlers}
+        bounds = {'.flex-container'}
+        
       >
-        <div>
+        <div id = "it1" className = "it">
           {rows}
         </div>
       </Draggable>
