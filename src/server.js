@@ -44,18 +44,23 @@ function getHash(salt, plain)  {
   return crypto.pbkdf2Sync(plain, salt, 50000, 64, "sha256").toString("hex")
 }
 
+let sanitize = require("mongo-sanitize");
+
 router.post("/login", (req, res) => {
-  if (!req.body.user.length || !req.body.pass.length) {
+  let userParam = sanitize(req.body.user);
+  let passParam = sanitize(req.body.pass);
+
+  if (!userParam.length || !passParam.length) {
     res.send("No headers");
   }
 
   User.findOne({
-    user: req.body.user
+    user: userParam
   }, function (err, user) {
     if (err) {
       res.send(err);
     } else if (user) {
-      if (getHash(user.salt, req.body.pass) !== user.pass) {
+      if (getHash(user.salt, passParam) !== user.pass) {
         res.send("Unauthorized");
       } else {
         res.send("Sent OK");
@@ -65,9 +70,9 @@ router.post("/login", (req, res) => {
       let err = "";
 
       new User({
-        user: req.body.user,
+        user: userParam,
         salt: salt,
-        pass: getHash(salt, req.body.pass)
+        pass: getHash(salt, passParam)
       }).save(
         err => {
           if (err) {

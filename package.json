@@ -12,6 +12,7 @@
     "crypto": "^1.0.1",
     "express": "^4.17.1",
     "jquery": "^3.5.1",
+    "mongo-sanitize": "^1.1.0",
     "mongoose": "^5.10.15",
     "react": "^16.13.1",
     "react-dnd": "^11.1.3",
