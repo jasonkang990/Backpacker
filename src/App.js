@@ -1,26 +1,38 @@
 import React from 'react';
-import './App.css';
-import ItemSpawn from './components/ItemSpawn';
-import Game from './components/Game';
-import Ship from './components/Ship';
-import { HTML5Backend } from 'react-dnd-html5-backend'
-import { DndProvider } from 'react-dnd'
-
+import Backpacker from './Backpacker';
+import Login from './Login';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from "react-router-dom";
 
 export default class App extends React.Component {
   render() {
     return (
-      <>
-      
-      <div className = "outer container">
-        <div className = "flex-container" id = "overContainer">
-        <ItemSpawn />
-        <Game />
+      <Router>
+        <div>
+          <nav>
+            <ul>
+              <li>
+                <Link to="/">Home</Link>
+              </li>
+              <li>
+                <Link to="/login">Login / Signup</Link>
+              </li>
+            </ul>
+          </nav>
         </div>
-        <Ship />
-      </div>
-      
-      </>
+        <Switch>
+          <Route path="/login">
+            <Login />
+          </Route>
+          <Route path="/">
+            <Backpacker />
+          </Route>
+        </Switch>
+      </Router>
     );
   }
 }
