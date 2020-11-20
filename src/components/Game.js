@@ -11,11 +11,13 @@ export default class Game extends React.Component {
       stepNumber: 0
     };
   }
-
+  onBoardChange(b) {
+    this.props.onBoardChange(b)
+  }
   render() {
     
     return (
-          <Board />
+          <Board board = {this.props.board} onBoardChange = {this.props.onBoardChange} />
     );
   }
 }

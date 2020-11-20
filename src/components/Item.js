@@ -8,12 +8,17 @@ import { shapes } from '../config';
 export default class Item extends React.Component {
   constructor(props) {
     super(props);
-    this.shape = shapes[Math.floor(Math.random() * shapes.length)];
+    
     this.state = {
+      shape: shapes[Math.floor(Math.random() * shapes.length)],
       position: {x:0,y:0}
     }
+    this.board = this.props.board;
     this.onStop = this.onStop.bind(this)
     this.onDrag = this.onDrag.bind(this)
+    this.onBoardChange = this.onBoardChange.bind(this);
+    this.newShape = this.newShape.bind(this)
+    this.render = this.render.bind(this)
     // let score = 0;
     // for (let j = 0; j < this.shape.length; j++) {
     //   score += this.shape[j].reduce(function (sum, string) {
@@ -45,15 +50,9 @@ export default class Item extends React.Component {
       );
     }
   }
-  // dragStart(e) {
-  //   let target = e.target;
-  //   e.dataTransfer.setData('id', target.id);
-  //   target.style.display = 'block';
-  // }
-  // dragOver(e) {
-  //   e.stopPropagation();
-    
-  // }
+  onBoardChange(b, c) {
+    this.props.onBoardChange(b, c);
+  }
   onStop(e, data) {
     e.preventDefault();
     let arr = [];
@@ -61,38 +60,68 @@ export default class Item extends React.Component {
       let obj = document.getElementById(`square-${i}`);
       arr.push(obj.getBoundingClientRect());
     }
-    let item =  document.getElementById(`it1`);
     let rows = document.getElementById(`it1`).children;
-    let coords = rows[0].children[0].getBoundingClientRect()
-    // console.log(coords.x +" " + arr[0].right + " " + coords.x + " " + arr[0].left + '  ' +  coords.y + ' ' +  arr[0].top + ' ' +  coords.y + ' ' + arr[0].bottom)
+    let tilesToChange = [];
+    let colorToChange = [];
     for (let i = 0; i < rows.length; i++) {
       let currRow = rows[i].children;
       for (let j = 0; j < currRow.length; j++) {
+        if (currRow[j].classList.contains('square-transparent')) {
+          continue;
+        }
         let coords = currRow[j].getBoundingClientRect()
-        let obj = currRow[j];
-        
+        coords.x = coords.x + 40;
+        coords.y = coords.y + 40;
         let insideBlock, index;
         for (let k = 0; k < arr.length; k++) {
 
           if (coords.x < arr[k].right && coords.x > arr[k].left && coords.y > arr[k].top && coords.y < arr[k].bottom) {
-            console.log("ran")
             insideBlock = arr[k];
             index = k;
             break;
           }
         }
-        
-        if (document.elementFromPoint(arr[index].x,arr[index].y).classList.contains('taken')) {
-          console.log("rn")
+        if (index === undefined || insideBlock === undefined) {
+          this.setState({position:{x:0,y:0}});
+          return;
+        }
+        if (this.board[index] !== 'w') {
+          this.setState({position:{x:0,y:0}});
+          return;
+        } else {
+          tilesToChange.push(index);
+          let colorry;
+          switch(currRow[j].classList.item(2)) {
+            case 'g':
+              colorry = 'g';
+              break;
+            case 'b':
+              colorry = 'b';
+              break;
+            case 'r':
+              colorry = 'r';
+              break;
+            case 'p':
+              colorry = 'p';
+              break;
+            case 'm':
+              colorry = 'm';
+              break;
+          }
+          colorToChange.push(colorry);
         }
         
       }
     }
     
-    console.log(arr[0]);
-    
-    
-   
+    for (let i = 0; i < tilesToChange.length; i++) {
+      this.onBoardChange(tilesToChange[i], colorToChange[i]);
+    }
+    this.newShape();
+  }
+  newShape() {
+    this.setState({shape: shapes[Math.floor(Math.random() * shapes.length)],
+    position: {x:0,y:0}})
   }
   onDrag(e,data) {
     e.preventDefault();
@@ -105,16 +134,16 @@ export default class Item extends React.Component {
   render() {
     const dragHandlers = {onStart: this.onStart, onStop: this.onStop, onDrag: this.onDrag};
     let rows = [], row = [];
-    let nRow = this.shape.length;
-    let nCol = this.shape[0].length;
+    let nRow = this.state.shape.length;
+    let nCol = this.state.shape[0].length;
     for (let i = 0; i < nRow; i++) {
       for (let j = 0; j < nCol; j++) {
-        if (this.shape[i][j] !== 'w') {
+        if (this.state.shape[i][j] !== 'w') {
           
-          row.push(this.renderSquare(i * nRow + j, this.shape[i][j], false ));
+          row.push(this.renderSquare(i * nRow + j, this.state.shape[i][j], false ));
         } else {
           
-          row.push(this.renderSquare(i * nRow + j, this.shape[i][j], true));
+          row.push(this.renderSquare(i * nRow + j, this.state.shape[i][j], true));
         }
       }
       rows.push(
@@ -134,7 +163,7 @@ export default class Item extends React.Component {
       bounds = {'.flex-container'}
       {...dragHandlers}
       position= {this.state.position}
-      grid = {[100,100]}
+      grid = {[25,25]}
       >
         <div id ="it1" className = "it"
         // draggable ={true}

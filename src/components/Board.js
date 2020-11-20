@@ -3,21 +3,31 @@ import Square from './Square';
 import './Board.css';
 import { noSquares, noRow } from '../config';
 
-let arr = [];
+
+
 export default class Board extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      board: new Array(noSquares).fill(1)
+      board: this.props.board
     }
+    // this.handler = this.handler.bind(this)
   }
-  renderSquare(i, filled=false) {
+  // handler(num) {
+  //   let newBoard = this.state.board;
+  //   newBoard[num] = 0;
+  //   this.setState({
+  //     board:newBoard
+  //   })
+  // }
+  renderSquare(i, filled, color) {
     if (filled) {
       return (
+        
         <Square
           id={`square-${i}`}
           key={`board-${i}`}
-          className="square-filled taken"
+          className= {`square-filled ${color}`}
         />
       )
     }
@@ -28,14 +38,14 @@ export default class Board extends React.Component {
   }
 
   render() {
+
     let rows = [], row = [];
 
     for (let i = 0; i < noSquares; i++) {
-      if (this.state.board[i]) {
-    
-        row.push(this.renderSquare(i));
+      if (this.state.board[i] !== 'w') {
+        row.push(this.renderSquare(i, true, this.state.board[i]));
       } else {
-        row.push(this.renderSquare(i), true);
+        row.push(this.renderSquare(i, false));
       }
       if (i % noRow === noRow - 1) {
         rows.push(
