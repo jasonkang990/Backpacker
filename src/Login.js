@@ -1,6 +1,7 @@
 import React from 'react';
 import {Container, Field, Label, Control, Input, Button, Box} from 'bloomer';
 import {serverUrl, axios} from './config';
+import {Redirect} from 'react-router-dom';
 
 export default class Login extends React.Component {
   constructor(props) {
@@ -40,11 +41,17 @@ export default class Login extends React.Component {
       this.setState({
         unauthorized: false,
         success: true
-      })
+      });
     }
   }
 
   render() {
+    if (!this.state.unauthorized && this.state.success) {
+      return (
+        <Redirect to="/" />
+      );
+    }
+
     return (
       <form onSubmit={this.handleSubmit}>
         <Container>
