@@ -1,5 +1,5 @@
 .square {
-  background: burlywood;
+  background: #F5C1C1;
   border: 2px solid black;
 
   margin-top: -1px;
@@ -22,6 +22,12 @@
 .b {
   background: #67340B;
 }
+.r {
+  background: orangered;
+}
+.p {
+  background: purple;
+}
 
 .square-transparent {
   background-color: Transparent;
@@ -33,13 +39,13 @@
 }
 
 .square-filled {
-  background: black;
+  
 }
 .item-square {
   width: 16%;
   height: 16%;
-  min-width: 90px;
-  min-height: 90px;
+  min-width: 96px;
+  min-height: 96px;
   margin: 1px;
   
 }

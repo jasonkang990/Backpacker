@@ -9,7 +9,22 @@ import {
 } from "react-router-dom";
 
 export default class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      board:Array(36).fill('w')
+    };
+    this.handleBoard = this.handleBoard.bind(this);
+  }
+  
+  handleBoard(b, c) {
+    let newBoard = this.state.board;
+    newBoard[b] = c;
+    this.setState({board:newBoard});
+  }
+
   render() {
+    
     return (
       <Router>
         <div>

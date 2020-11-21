@@ -7,7 +7,7 @@ export default class Square extends React.Component {
     
     return (
       <div
-        className={`square taken ${this.props.className || ''}`}
+        className={`square ${this.props.className || ''}`}
         id={this.props.id}
         
       ></div>
