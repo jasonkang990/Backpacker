@@ -4,6 +4,7 @@ import ItemSpawn from './components/ItemSpawn';
 import Game from './components/Game';
 import Ship from './components/Ship';
 import Score from './components/Score';
+import User from './components/User';
 
 export default class Backpacker extends React.Component {
   constructor(props) {
@@ -37,6 +38,7 @@ export default class Backpacker extends React.Component {
         </div>
         <Ship resetBoard = {this.resetBoard}/>
         <Score score = {this.state.score}/>
+        <User />
       </div>
     );
   }
