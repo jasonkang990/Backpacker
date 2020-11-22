@@ -1,6 +1,6 @@
 // Mongoose pre-requisites
 let {
-  username, password
+  username, password, sessionSecret
 } = require("./secret");
 let mongoose = require("mongoose");
 let User = require("./models/users");
@@ -28,7 +28,20 @@ let clientUrl = "http://localhost:3000";
 const serverPort = 5000;
 const app = express();
 app.use(cors({
+  credentials: true,
   origin: clientUrl 
+}));
+
+// Cookies
+app.set('trust proxy', true);
+let session = require("cookie-session");
+app.use(session({
+  name: 'session',
+  keys: [sessionSecret],
+  cookie: {
+    path: '/',
+    secure: false
+  }
 }));
 
 // Backend routes always begin with /api
@@ -48,6 +61,11 @@ let crypto = require("crypto");
 function getHash(salt, plain)  {
   return crypto.pbkdf2Sync(plain, salt, 50000, 64, "sha256").toString("hex");
 }
+
+// Get user
+router.get("/user", (req, res) => {
+  res.send(req.session.user || "");
+});
 
 // Login route /api/login
 let sanitize = require("mongo-sanitize");
@@ -69,6 +87,8 @@ router.post("/login", (req, res) => {
       if (getHash(user.salt, passParam) !== user.pass) {
         res.send("Unauthorized");
       } else {
+        req.session.user = userParam;
+        req.session.save();
         res.send("Sent OK");
       }
     } else {
@@ -89,6 +109,8 @@ router.post("/login", (req, res) => {
       );
 
       if (!err.length) {
+        req.session.user = userParam;
+        req.session.save();
         res.send("Sent OK");
       } else {
         res.send("Unauthorized");

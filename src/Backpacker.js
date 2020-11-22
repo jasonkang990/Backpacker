@@ -3,6 +3,7 @@ import './Backpacker.css';
 import ItemSpawn from './components/ItemSpawn';
 import Game from './components/Game';
 import Ship from './components/Ship';
+import User from './components/User';
 
 export default class Backpacker extends React.Component {
   constructor(props) {
@@ -26,6 +27,7 @@ export default class Backpacker extends React.Component {
         <ItemSpawn board = {this.state.board} onBoardChange = {this.handleBoard}/>
         <Game board = {this.state.board} onBoardChange = {this.handleBoard}/>
         </div>
+        <User />
         <Ship />
       </div>
     );
