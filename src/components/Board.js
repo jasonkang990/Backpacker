@@ -8,18 +8,9 @@ import { noSquares, noRow } from '../config';
 export default class Board extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      board: this.props.board
-    }
-    // this.handler = this.handler.bind(this)
+    
+    
   }
-  // handler(num) {
-  //   let newBoard = this.state.board;
-  //   newBoard[num] = 0;
-  //   this.setState({
-  //     board:newBoard
-  //   })
-  // }
   renderSquare(i, filled, color) {
     if (filled) {
       return (
@@ -38,12 +29,11 @@ export default class Board extends React.Component {
   }
 
   render() {
-
     let rows = [], row = [];
 
     for (let i = 0; i < noSquares; i++) {
-      if (this.state.board[i] !== 'w') {
-        row.push(this.renderSquare(i, true, this.state.board[i]));
+      if (this.props.board[i] !== 'w') {
+        row.push(this.renderSquare(i, true, this.props.board[i]));
       } else {
         row.push(this.renderSquare(i, false));
       }

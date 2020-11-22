@@ -11,9 +11,9 @@ export default class ItemSpawn extends React.Component {
     };
     this.onBoardChange = this.onBoardChange.bind(this)
   }
-  onBoardChange(b, c) {
+  onBoardChange(b, c, s) {
     
-    this.props.onBoardChange(b, c)
+    this.props.onBoardChange(b, c, s)
     
   }
   render() {
