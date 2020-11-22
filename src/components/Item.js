@@ -1,6 +1,5 @@
 import React from 'react';
 import Draggable from 'react-draggable';
-import Square from './Square';
 import ItemSquare from './ItemSquare';
 import { shapes } from '../config';
 
@@ -11,25 +10,14 @@ export default class Item extends React.Component {
     
     this.state = {
       shape: shapes[Math.floor(Math.random() * shapes.length)],
-      position: {x:0,y:0}
+      position: {x:0,y:0},
     }
-    this.board = this.props.board;
+
     this.onStop = this.onStop.bind(this)
     this.onDrag = this.onDrag.bind(this)
     this.onBoardChange = this.onBoardChange.bind(this);
     this.newShape = this.newShape.bind(this)
     this.render = this.render.bind(this)
-    // let score = 0;
-    // for (let j = 0; j < this.shape.length; j++) {
-    //   score += this.shape[j].reduce(function (sum, string) {
-    //       if (string !== 'w') {
-    //         return sum + 10;
-    //       } else {
-    //         return sum;
-    //       }
-    //   });
-    // }
-    // this.score = score;
   }
   renderSquare(i, color, transparent=false) {
     if (transparent) {
@@ -50,8 +38,8 @@ export default class Item extends React.Component {
       );
     }
   }
-  onBoardChange(b, c) {
-    this.props.onBoardChange(b, c);
+  onBoardChange(b, c, s) {
+    this.props.onBoardChange(b, c, s);
   }
   onStop(e, data) {
     e.preventDefault();
@@ -85,7 +73,7 @@ export default class Item extends React.Component {
           this.setState({position:{x:0,y:0}});
           return;
         }
-        if (this.board[index] !== 'w') {
+        if (this.props.board[index] !== 'w') {
           this.setState({position:{x:0,y:0}});
           return;
         } else {
@@ -115,7 +103,7 @@ export default class Item extends React.Component {
     }
     
     for (let i = 0; i < tilesToChange.length; i++) {
-      this.onBoardChange(tilesToChange[i], colorToChange[i]);
+      this.onBoardChange(tilesToChange[i], colorToChange[i], 10);
     }
     this.newShape();
   }
@@ -160,15 +148,13 @@ export default class Item extends React.Component {
     return (
       <Draggable
       
-      bounds = {'.flex-container'}
+     
       {...dragHandlers}
       position= {this.state.position}
       grid = {[25,25]}
       >
         <div id ="it1" className = "it"
-        // draggable ={true}
-        // onDragStart = {this.dragStart}
-        // onDragOver = {this.dragOver}>
+        
         >
           {rows}
         </div>
