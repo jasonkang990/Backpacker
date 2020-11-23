@@ -41,7 +41,7 @@ app.use(cors({
   origin: clientUrl 
 }));
 var path = require('path');
-app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
+app.use(favicon(path.join(__dirname, '..', 'public', 'favicon.ico')));
 
 // Cookies
 app.set('trust proxy', true);
