@@ -1,12 +1,14 @@
 // Mongoose pre-requisites
-if (process.env.username && process.env.password && process.env.sessionSecret) {
-  let username = process.env.username;
-  let password = process.env.password;
-  let sessionSecret = process.env.sessionSecret;
-} else {
-  let {
-    username, password, sessionSecret
-  } = require("./secret");
+let username, password, sessionSecret;
+try {
+  let secretModule = require("./secret");
+  username = secretModule.username;
+  password = secretModule.password;
+  sessionSecret = secretModule.sessionSecret;
+} catch (error) {
+  username = process.env.username;
+  password = process.env.password;
+  sessionSecret = process.env.sessionSecret;
 }
 let mongoose = require("mongoose");
 let User = require("./models/users");
