@@ -12,6 +12,7 @@ try {
 }
 let mongoose = require("mongoose");
 let User = require("./models/users");
+var favicon = require("serve-favicon");
 
 // Mongoose connection
 let dbConn = `mongodb+srv://${username}:${password}@cluster0.af7g6.mongodb.net/<dbname>?retryWrites=true&w=majority`;
@@ -39,6 +40,8 @@ app.use(cors({
   credentials: true,
   origin: clientUrl 
 }));
+var path = require('path');
+app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 
 // Cookies
 app.set('trust proxy', true);
