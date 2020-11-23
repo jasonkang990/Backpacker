@@ -1,7 +1,13 @@
 // Mongoose pre-requisites
-let {
-  username, password, sessionSecret
-} = require("./secret");
+if (process.env.username && process.env.password && process.env.sessionSecret) {
+  let username = process.env.username;
+  let password = process.env.password;
+  let sessionSecret = process.env.sessionSecret;
+} else {
+  let {
+    username, password, sessionSecret
+  } = require("./secret");
+}
 let mongoose = require("mongoose");
 let User = require("./models/users");
 
@@ -24,8 +30,8 @@ let cors = require("cors");
 let router = express.Router();
 
 // Serving backend
-let clientUrl = "http://localhost:3000";
-const serverPort = 5000;
+let clientUrl = process.env.clientUrl || "http://localhost:3000";
+const serverPort = process.env.port || 5000;
 const app = express();
 app.use(cors({
   credentials: true,
