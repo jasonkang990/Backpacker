@@ -34,7 +34,7 @@ let router = express.Router();
 
 // Serving backend
 let clientUrl = process.env.clientUrl || "http://localhost:3000";
-const serverPort = process.env.port || 5000;
+const serverPort = process.env.PORT || 5000;
 const app = express();
 app.use(cors({
   credentials: true,
