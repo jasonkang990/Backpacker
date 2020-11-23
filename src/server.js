@@ -55,6 +55,14 @@ app.use(session({
   }
 }));
 
+// Churn react app into static site, and push it
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static(path.join(__dirname, '..', 'build')));
+  app.get('*', function(req, res) {
+    res.sendFile(path.join(__dirname, '..', 'build', 'index.html'));
+  });
+}
+
 // Backend routes always begin with /api
 app.use("/api", router);
 router.use(express.json());
