@@ -26,10 +26,13 @@
     "react-draggable": "^4.4.3",
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.3",
+    "serve": "^11.3.2",
     "serve-favicon": "^2.5.0"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "node src/server.js",
+    "heroku-postbuild": "npm install && npm run build",
+    "start1": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
