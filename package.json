@@ -32,7 +32,7 @@
   },
   "scripts": {
     "start": "node index.js",
-    "heroku-postbuild": "cd Backpacker && npm install --only=dev && npm install && npm run build",
+    "heroku-postbuild": "npm install && npm run build",
     "start1": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
