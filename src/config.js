@@ -43,9 +43,6 @@ const shapes = [
 ];
 const serverUrl = "http://localhost:5000/api/";
 
-let axios = require('axios');
-// axios.defaults.withCredentials = true;
-
 export {
-  noSquares, noRow, shapes, serverUrl, axios
+  noSquares, noRow, shapes, serverUrl
 }
