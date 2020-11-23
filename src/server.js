@@ -66,9 +66,6 @@ if (process.env.NODE_ENV === 'production') {
 // Backend routes always begin with /api
 app.use("/api", router);
 router.use(express.json());
-app.listen(serverPort, () => {
-  console.log("Server runs on port %d", serverPort);
-});
 
 // Test route /api/helloworld
 router.get("/helloworld", (req, res) => {
@@ -136,4 +133,8 @@ router.post("/login", (req, res) => {
       }
     }
   });
+});
+
+app.listen(serverPort, () => {
+  console.log("Server runs on port %d", serverPort);
 });
