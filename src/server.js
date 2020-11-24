@@ -30,6 +30,8 @@ check.once("open", () => console.log("Connection successful"));
 // Backend/routing prereqs
 let express = require("express");
 let cors = require("cors");
+let router = express.Router();
+router.use(express.json());
 
 // Serving backend
 let clientUrl = process.env.clientUrl || "http://localhost:3000";
@@ -41,6 +43,7 @@ app.use(cors({
 }));
 var path = require('path');
 app.use(favicon(path.join(__dirname, '..', 'public', 'favicon.ico')));
+app.use("/api", router);
 
 // Cookies
 app.set('trust proxy', true);
@@ -66,13 +69,13 @@ function getHash(salt, plain)  {
 }
 
 // Get user
-app.get("/api/user", (req, res) => {
+router.get("/user", (req, res) => {
   res.send(req.session.user || "");
 });
 
 // Login route /api/login
 let sanitize = require("mongo-sanitize");
-app.post("/api/login", (req, res) => {
+router.post("/login", (req, res) => {
   let userParam = sanitize(req.body.user);
   let passParam = sanitize(req.body.pass);
 
