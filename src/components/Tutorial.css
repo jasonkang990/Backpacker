@@ -1,0 +1,11 @@
+.tutorial {
+  clear: both;
+  background-image: url("../static/tutorial.jpeg");
+  background-repeat: no-repeat;
+  background-size: 500px 200px;
+  height: 200px;
+  width: 500px;
+  font-family: "Just Another Hand";
+  font-size: 35px;
+  color: purple;
+}
