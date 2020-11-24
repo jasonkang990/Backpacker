@@ -130,23 +130,30 @@ app.post("/api/login", (req, res) => {
   });
 });
 
-
+mongoose.set('useFindAndModify', false);
 // Update score route /api/update
 app.post("/api/update", (req, res) => {
   let userParam = sanitize(req.body.user);
   let scoreParam = sanitize(req.body.score);
-  console.log(userParam);
-  console.log(scoreParam);
   User.findOne({user: userParam}, function (err, user) {
     if (!err) {
       scoreParam += user.highScore;
     }
+    const filter = {user: userParam};
+    const update = {highScore: scoreParam};
+    User.findOneAndUpdate(filter, update, function () {res.send("Score updated")});
+    req.session.save();
   });
-  const filter = {user: userParam};
-  const update = {highScore: scoreParam};
-  User.findOneAndUpdate(filter, update);
-  req.session.save();
-  res.send("Score updated");
+  
+});
+
+// Get highScore /api/highscore
+app.get("/api/highscore", (req, res) => {
+  User.findOne({user: req.session.user}).exec(function(err, user) {
+    if (!err) {
+      res.send("" + user.highScore); 
+    }
+  });
 });
 
 // Get usernames and scores route /api/scores

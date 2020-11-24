@@ -20,6 +20,15 @@ export default class User extends React.Component {
     this.setState({
       user: user.data
     });
+
+    let highscore = await axios({
+      method: 'get',
+      url: serverUrl + 'highscore',
+      withCredentials: true
+    });
+    this.setState({
+      highScore: highscore.data
+    });
   }
 
   render() {
@@ -33,7 +42,7 @@ export default class User extends React.Component {
           </CardHeader>
           <CardContent>
             <Content>
-              Score: 0
+              Total Player Score: {this.state.highScore}
             </Content>
           </CardContent>
         </Card>
