@@ -162,7 +162,14 @@ app.get("/api/scores", (req, res) => {
     if (err) {
       err = err;
     }
-    docs = docs.map(p => p.toObject());
+    docs = docs.map(p => {
+      let x = p.toObject();
+      delete x.salt;
+      delete x.pass;
+      delete x._id;
+      delete x.__v;
+      return x;
+    });
     res.send(docs);
   });
 });
