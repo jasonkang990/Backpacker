@@ -40,7 +40,7 @@ export default class Backpacker extends React.Component {
       url: serverUrl + 'user',
       withCredentials: true,
     });
-    let response = await axios({
+    await axios({
       method: 'post',
       url: serverUrl + 'update',
       data: {
