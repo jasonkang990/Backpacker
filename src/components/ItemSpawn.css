@@ -1,8 +1,10 @@
 .itemSpawn {
-  width: 50%;
+  width:50%;
   height: 50%;
-  min-height: 600px;
   max-width: 600px;
+  min-width: 600px;
+  min-height: 600px;
+  max-height: 600px;
   z-index: 999;
   background: skyblue;
 }

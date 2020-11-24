@@ -31,14 +31,16 @@ export default class Backpacker extends React.Component {
 
   render() {
     return (
-      <div className = "outer container">
+      <div className = "outer-container">
         <div className = "flex-container" id = "overContainer">
         <ItemSpawn board = {this.state.board} onBoardChange = {this.handleBoard}/>
         <Game board = {this.state.board} onBoardChange = {this.handleBoard}/>
         </div>
+        <div>
         <User />
         <Ship resetBoard = {this.resetBoard}/>
         <Score score = {this.state.score}/>
+        </div>
       </div>
     );
   }

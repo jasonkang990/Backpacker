@@ -12,13 +12,13 @@ export default class App extends React.Component {
   render() {
     return (
       <Router>
-        <div>
+        <div className = "flex-section">
           <nav>
             <ul>
-              <li>
+              <li className = "inCube">
                 <Link to="/">Home</Link>
               </li>
-              <li>
+              <li className = "inCube2">
                 <Link to="/login">Login / Signup</Link>
               </li>
             </ul>
