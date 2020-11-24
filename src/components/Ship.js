@@ -12,11 +12,11 @@ export default class Ship extends React.Component {
   }
   render() {
     return (
-      <div className="shipDiv">
+      // <div className="shipDiv">
         <button onClick = {this.resetBoard} className="ship button is-success">
           Ship it!
         </button>
-      </div>
+      
     );
   }
 }

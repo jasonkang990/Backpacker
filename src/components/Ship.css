@@ -1,6 +1,6 @@
 .ship {
-  height: 10%;
   width: 10%;
-
-  float: right;
+  height: 10%;
+  position: relative;
+  
 }

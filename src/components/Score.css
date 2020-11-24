@@ -1,8 +1,10 @@
 .scoreDiv {
     height: 10%;
     width: 10%;
+    
+    
     border: solid lightgreen;
     background: lightgreen;
+    position: relative;
     margin-top: 5%;
-    float: right;
 }
