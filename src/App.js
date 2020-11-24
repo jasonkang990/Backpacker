@@ -1,6 +1,7 @@
 import React from 'react';
 import Backpacker from './Backpacker';
 import Login from './Login';
+import Leaderboard from './Leaderboard';
 import {
   BrowserRouter as Router,
   Switch,
@@ -21,12 +22,18 @@ export default class App extends React.Component {
               <li>
                 <Link to="/login">Login / Signup</Link>
               </li>
+              <li>
+                <Link to="/scores">Leaderboard</Link>
+              </li>
             </ul>
           </nav>
         </div>
         <Switch>
           <Route path="/login">
             <Login />
+          </Route>
+          <Route path="/scores">
+            <Leaderboard />
           </Route>
           <Route path="/">
             <Backpacker />

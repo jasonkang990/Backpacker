@@ -118,3 +118,26 @@ router.post("/login", (req, res) => {
     }
   });
 });
+
+// Update score route /api/update
+router.post("/update", (req, res) => {
+  let userParam = sanitize(req.body.user);
+  let scoreParam = sanitize(req.body.score);
+  const filter = {user: userParam};
+  const update = {highScore: scoreParam};
+  User.findOneAndUpdate(filter, update);
+  req.session.save();
+  res.send("Score updated");
+});
+
+// Get usernames and scores route /api/scores
+router.get("/scores", (req, res) => {
+  User.find({}).sort('-highScore').exec(function(err, docs) { 
+    if (err) {
+      err = err;
+      console.log(err);
+    }
+    docs = docs.map(p => p.toObject());
+    res.send(docs);
+  });
+});

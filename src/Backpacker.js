@@ -5,6 +5,8 @@ import Game from './components/Game';
 import Ship from './components/Ship';
 import User from './components/User';
 import Score from './components/Score';
+import {serverUrl} from './config';
+import axios from 'axios';
 
 export default class Backpacker extends React.Component {
   constructor(props) {
@@ -25,8 +27,26 @@ export default class Backpacker extends React.Component {
   resetBoard() {
     
     this.setState({board:Array(36).fill('w'), score:0});
+    this.updateScore();
   
     
+  }
+
+  async updateScore() {
+    let username = await axios({
+      method: 'get',
+      url: serverUrl + 'user',
+      withCredentials: true,
+    });
+    let response = await axios({
+      method: 'post',
+      url: serverUrl + 'update',
+      data: {
+        user: username,
+        score: this.state.score,
+      },
+      withCredentials: true
+    });
   }
 
   render() {

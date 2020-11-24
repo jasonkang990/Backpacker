@@ -8,8 +8,8 @@ export default class Ship extends React.Component {
   }
   resetBoard() {
     this.props.resetBoard();
-    
   }
+
   render() {
     return (
       <div className="shipDiv">
