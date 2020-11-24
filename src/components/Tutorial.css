@@ -1,6 +1,7 @@
 .tutorial {
   clear: both;
-  background-image: url("../static/tutorial.jpeg");
+  background-image: url("../static/tutorial.jpg");
+  background-blend-mode: normal, difference, normal;
   background-repeat: no-repeat;
   background-size: 500px 200px;
   height: 200px;
