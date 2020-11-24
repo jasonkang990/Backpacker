@@ -1,5 +1,7 @@
 # API Documentation
 
+No delete API -> don't want malicious users deleting data accidentally.
+
 `GET /api/helloworld`
 
 returns `"Hello world"` to ensure that API is up and running
