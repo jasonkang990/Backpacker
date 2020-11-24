@@ -122,40 +122,6 @@ app.post("/api/login", (req, res) => {
   });
 });
 
-<<<<<<< HEAD
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 // Update score route /api/update
 router.post("/update", (req, res) => {
@@ -178,7 +144,7 @@ router.get("/scores", (req, res) => {
     docs = docs.map(p => p.toObject());
     res.send(docs);
   });
-=======
+});
 // Churn react app into static site, and push it
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static(path.join(__dirname, '..', 'build')));
@@ -189,5 +155,4 @@ if (process.env.NODE_ENV === 'production') {
 
 app.listen(serverPort, () => {
   console.log("Server runs on port %d", serverPort);
->>>>>>> main
 });
