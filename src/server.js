@@ -119,6 +119,40 @@ router.post("/login", (req, res) => {
   });
 });
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // Update score route /api/update
 router.post("/update", (req, res) => {
   let userParam = sanitize(req.body.user);
