@@ -41,7 +41,12 @@ const shapes = [
     ['b']
   ]
 ];
-const serverUrl = process.env.serverUrl || "http://localhost:5000/api/";
+let serverUrl;
+if (process.env.NODE_ENV === 'production') {
+  serverUrl = 'https://backpacker426.herokuapp.com/api/';
+} else {
+  serverUrl = 'http://localhost:5000/api/';
+}
 
 export {
   noSquares, noRow, shapes, serverUrl
