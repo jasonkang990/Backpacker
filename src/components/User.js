@@ -25,7 +25,7 @@ export default class User extends React.Component {
   render() {
     if (this.state.user) {
       return(
-        <Card>
+        <Card className = "userCard">
           <CardHeader>
             <CardHeaderTitle>
               {this.state.user}
@@ -33,7 +33,7 @@ export default class User extends React.Component {
           </CardHeader>
           <CardContent>
             <Content>
-              Score: 0
+              Total Score: 0
             </Content>
           </CardContent>
         </Card>

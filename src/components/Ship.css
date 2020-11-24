@@ -1,6 +1,7 @@
 .ship {
-  width: 10%;
-  height: 10%;
-  position: relative;
+  
+  grid-column-start: 2;
+  grid-column-end: 2;
+  grid-row: 1;
   
 }
