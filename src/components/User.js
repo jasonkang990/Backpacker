@@ -34,7 +34,7 @@ export default class User extends React.Component {
   render() {
     if (this.state.user) {
       return(
-        <Card>
+        <Card className = "userCard">
           <CardHeader>
             <CardHeaderTitle>
               {this.state.user}

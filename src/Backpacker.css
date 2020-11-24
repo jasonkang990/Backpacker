@@ -6,24 +6,72 @@ body {
 ol, ul {
   padding-left: 30px;
 } 
+.outer {
+  float: left;
+  display: grid;
+  grid-template-columns: 85% 15%;
+  grid-template-rows: 10% 25% 20%;
+  height: 100%;
+  width: 100%;
+  min-width: 1500px;
+
+}
+
+
 
 .flex-container {
- display: flex; 
- position: relative;
- float:left;
+  grid-column: 1;
+  grid-row-start: 1;
+  grid-row-end: 3;
+  display: flex; 
+  position: relative;
+  float:left;
   width:100%;
   max-width: 1200px;
   height:100%;
   max-height: 600px;
 }
 
+.flex-section {
+  display: flex; 
+  position: relative;
+  
+   
+   height:100%;
+   width:100%;
+   max-width: 400px;
+   max-height: 200px;
+   margin-bottom: 10px;
+  
+ }
+ .inCube {
+  position: relative;
+  float:left;
+  margin-right: 10px;
+  padding: 5px;
+  border: .15em solid orange;
+  font-weight: bold;
+  background-color: orange;
+}
+.inCube2 {
+  position: relative;
+  float:left;
+  padding: 5px;
+  border: .15em solid orange;
+  font-weight: bold;
+  background-color: orange;
+}
+
 .inBox {
   position: relative;
   float:left;
+  display: block;
   border: .15em solid black
 }
 
 .it {
   display: inline-block;
-
+}
+.userCard {
+  grid-row: 2;
 }

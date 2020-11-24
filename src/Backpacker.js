@@ -7,6 +7,7 @@ import User from './components/User';
 import Score from './components/Score';
 import {serverUrl} from './config';
 import axios from 'axios';
+import Tutorial from './components/Tutorial';
 
 export default class Backpacker extends React.Component {
   constructor(props) {
@@ -24,6 +25,7 @@ export default class Backpacker extends React.Component {
     newBoard[b] = c;
     this.setState({board:newBoard, score: this.state.score + s});
   }
+
   resetBoard() {
     this.updateScore();
     this.setState({board:Array(36).fill('w'), score:0});
@@ -50,15 +52,18 @@ export default class Backpacker extends React.Component {
 
   render() {
     return (
-      <div className = "outer container">
-        <div className = "flex-container" id = "overContainer">
-        <ItemSpawn board = {this.state.board} onBoardChange = {this.handleBoard}/>
-        <Game board = {this.state.board} onBoardChange = {this.handleBoard}/>
+      <>
+        <div className = "outer container">
+          <div className = "flex-container" id = "overContainer">
+          <ItemSpawn board = {this.state.board} onBoardChange = {this.handleBoard}/>
+          <Game board = {this.state.board} onBoardChange = {this.handleBoard}/>
+          </div>
+          <User />
+          <Ship resetBoard = {this.resetBoard}/>
+          <Score score = {this.state.score}/>
         </div>
-        <User />
-        <Ship resetBoard = {this.resetBoard}/>
-        <Score score = {this.state.score}/>
-      </div>
+        <Tutorial />
+      </>
     );
   }
 }
