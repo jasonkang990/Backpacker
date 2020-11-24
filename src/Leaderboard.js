@@ -8,7 +8,7 @@ export default class Leaderboard extends React.Component {
     super(props);
     this.state = {
       leaderboardData: null
-    }
+    };
   }
 
   async componentDidMount() {

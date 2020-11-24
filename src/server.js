@@ -181,6 +181,7 @@ app.get("/api/scores", (req, res) => {
     res.send(docs);
   });
 });
+
 // Churn react app into static site, and push it
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static(path.join(__dirname, '..', 'build')));

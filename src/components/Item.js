@@ -19,6 +19,7 @@ export default class Item extends React.Component {
     this.newShape = this.newShape.bind(this)
     this.render = this.render.bind(this)
   }
+
   renderSquare(i, color, transparent=false) {
     if (transparent) {
       return (
@@ -38,9 +39,11 @@ export default class Item extends React.Component {
       );
     }
   }
+
   onBoardChange(b, c, s) {
     this.props.onBoardChange(b, c, s);
   }
+
   onStop(e, data) {
     e.preventDefault();
     let arr = [];
@@ -48,31 +51,35 @@ export default class Item extends React.Component {
       let obj = document.getElementById(`square-${i}`);
       arr.push(obj.getBoundingClientRect());
     }
+
     let rows = document.getElementById(`it1`).children;
     let tilesToChange = [];
     let colorToChange = [];
+
     for (let i = 0; i < rows.length; i++) {
       let currRow = rows[i].children;
       for (let j = 0; j < currRow.length; j++) {
         if (currRow[j].classList.contains('square-transparent')) {
           continue;
         }
+
         let coords = currRow[j].getBoundingClientRect()
         coords.x = coords.x + 40;
         coords.y = coords.y + 40;
         let insideBlock, index;
         for (let k = 0; k < arr.length; k++) {
-
           if (coords.x < arr[k].right && coords.x > arr[k].left && coords.y > arr[k].top && coords.y < arr[k].bottom) {
             insideBlock = arr[k];
             index = k;
             break;
           }
         }
+
         if (index === undefined || insideBlock === undefined) {
           this.setState({position:{x:0,y:0}});
           return;
         }
+
         if (this.props.board[index] !== 'w') {
           this.setState({position:{x:0,y:0}});
           return;
@@ -100,7 +107,6 @@ export default class Item extends React.Component {
           }
           colorToChange.push(colorry);
         }
-        
       }
     }
     
@@ -109,18 +115,17 @@ export default class Item extends React.Component {
     }
     this.newShape();
   }
+
   newShape() {
     this.setState({shape: shapes[Math.floor(Math.random() * shapes.length)],
     position: {x:0,y:0}})
   }
+
   onDrag(e,data) {
     e.preventDefault();
-    
-  
-    
-
     this.setState({position:{x:data.x,y:data.y}})
   }
+
   render() {
     const dragHandlers = {onStart: this.onStart, onStop: this.onStop, onDrag: this.onDrag};
     let rows = [], row = [];
@@ -129,13 +134,12 @@ export default class Item extends React.Component {
     for (let i = 0; i < nRow; i++) {
       for (let j = 0; j < nCol; j++) {
         if (this.state.shape[i][j] !== 'w') {
-          
           row.push(this.renderSquare(i * nRow + j, this.state.shape[i][j], false ));
         } else {
-          
           row.push(this.renderSquare(i * nRow + j, this.state.shape[i][j], true));
         }
       }
+
       rows.push(
         <div
           className="board-row"
@@ -149,18 +153,14 @@ export default class Item extends React.Component {
     
     return (
       <Draggable
-      
-     
-      {...dragHandlers}
-      position= {this.state.position}
-      grid = {[25,25]}
+        {...dragHandlers}
+        position= {this.state.position}
+        grid = {[25,25]}
       >
-        <div id ="it1" className = "it"
-        
-        >
+        <div id ="it1" className = "it">
           {rows}
         </div>
         </Draggable>
-    )
+    );
   }
 }

@@ -7,21 +7,19 @@ export default class ItemSpawn extends React.Component {
     super(props);
     this.state = {
       itemIdOffset: 0
-      
     };
     this.onBoardChange = this.onBoardChange.bind(this)
   }
+
   onBoardChange(b, c, s) {
-    
     this.props.onBoardChange(b, c, s)
-    
   }
+
   render() {
-    
     return (
       <div className="itemSpawn inBox">
         <Item board = {this.props.board} onBoardChange = {this.onBoardChange}/>
       </div>
-    )
+    );
   }
 }

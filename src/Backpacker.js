@@ -49,7 +49,6 @@ export default class Backpacker extends React.Component {
       },
       withCredentials: true
     });
-   
   }
 
   render() {
@@ -57,8 +56,8 @@ export default class Backpacker extends React.Component {
       <>
         <div className = "outer container">
           <div className = "flex-container" id = "overContainer">
-          <ItemSpawn board = {this.state.board} onBoardChange = {this.handleBoard}/>
-          <Game board = {this.state.board} onBoardChange = {this.handleBoard}/>
+            <ItemSpawn board = {this.state.board} onBoardChange = {this.handleBoard}/>
+            <Game board = {this.state.board} onBoardChange = {this.handleBoard}/>
           </div>
           <User numShip = {this.state.timesShipped}/>
           <Ship resetBoard = {this.resetBoard}/>

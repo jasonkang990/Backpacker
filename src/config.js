@@ -1,7 +1,7 @@
 const noSquares = 36;
 const noRow = Math.sqrt(noSquares);
+// w = blank, b = brown, g = grey, m = gold, r = red, p = purple
 const shapes = [
-  // w = blank, b = brown, g = grey, m = gold, r = red, p = purple
   [
     ['w', 'g', 'w'],
     ['w', 'g', 'w'],

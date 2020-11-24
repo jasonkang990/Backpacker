@@ -6,17 +6,16 @@ export default class Ship extends React.Component {
     super(props)
     this.resetBoard = this.resetBoard.bind(this);
   }
+
   async resetBoard() {
     await this.props.resetBoard();
   }
 
   render() {
     return (
-      // <div className="shipDiv">
         <button onClick = {this.resetBoard} className="ship button is-success">
           Ship it!
         </button>
-      
     );
   }
 }

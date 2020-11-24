@@ -3,10 +3,7 @@ import Square from './Square';
 import './Board.css';
 import { noSquares, noRow } from '../config';
 
-
-
 export default class Board extends React.Component {
-  
   renderSquare(i, filled, color) {
     if (filled) {
       return (

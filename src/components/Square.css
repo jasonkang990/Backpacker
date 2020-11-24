@@ -12,18 +12,23 @@
 .square:focus {
   outline: none;
 }
+
 .m {
   background: #FFFB06;
 }
+
 .g {
   background: #A7A29E;
 }
+
 .b {
   background: #67340B;
 }
+
 .r {
   background: orangered;
 }
+
 .p {
   background: purple;
 }
@@ -37,9 +42,6 @@
   position: relative;
 }
 
-/* .square-filled {
-  
-} */
 .item-square {
   border-radius: 12px;
   width: 16%;
@@ -47,5 +49,4 @@
   min-width: 96px;
   min-height: 96px;
   margin: 1px;
-  
 }

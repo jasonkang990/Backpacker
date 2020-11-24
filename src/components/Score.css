@@ -1,11 +1,8 @@
 .scoreDiv {
-    
-    
     grid-column-start: 2;
     grid-column-end: 2;
     grid-row: 3;
     border: solid lightgreen;
     background: lightgreen;
     position: relative;
-   
 }
