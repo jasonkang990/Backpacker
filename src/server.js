@@ -34,7 +34,12 @@ let router = express.Router();
 router.use(express.json());
 
 // Serving backend
-let clientUrl = process.env.clientUrl || "http://localhost:3000";
+let clientUrl;
+if (process.env.NODE_ENV === 'production') {
+  clientUrl = 'https://backpacker426.herokuapp.com/*';
+} else {
+  clientUrl = "http://localhost:3000/*";
+}
 const serverPort = process.env.PORT || 5000;
 const app = express();
 app.use(cors({
