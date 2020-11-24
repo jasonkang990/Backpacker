@@ -17,8 +17,8 @@ const shapes = [
     ['m', 'm', 'm']
   ],
   [
-    ['m', 'w', 'w'],
-    ['m', 'm', 'm']
+    ['b', 'w', 'b'],
+    ['b', 'b', 'b']
   ],
   [
     ['p']
@@ -41,7 +41,7 @@ const shapes = [
     ['b']
   ]
 ];
-const serverUrl = "http://localhost:5000/api/";
+const serverUrl = process.env.serverUrl || "http://localhost:5000/api/";
 
 export {
   noSquares, noRow, shapes, serverUrl

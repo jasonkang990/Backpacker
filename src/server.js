@@ -1,9 +1,18 @@
 // Mongoose pre-requisites
-let {
-  username, password, sessionSecret
-} = require("./secret");
+let username, password, sessionSecret;
+try {
+  let secretModule = require("./secret");
+  username = secretModule.username;
+  password = secretModule.password;
+  sessionSecret = secretModule.sessionSecret;
+} catch (error) {
+  username = process.env.username;
+  password = process.env.password;
+  sessionSecret = process.env.sessionSecret;
+}
 let mongoose = require("mongoose");
 let User = require("./models/users");
+var favicon = require("serve-favicon");
 
 // Mongoose connection
 let dbConn = `mongodb+srv://${username}:${password}@cluster0.af7g6.mongodb.net/<dbname>?retryWrites=true&w=majority`;
@@ -21,16 +30,17 @@ check.once("open", () => console.log("Connection successful"));
 // Backend/routing prereqs
 let express = require("express");
 let cors = require("cors");
-let router = express.Router();
 
 // Serving backend
-let clientUrl = "http://localhost:3000";
-const serverPort = 5000;
+let clientUrl = process.env.clientUrl || "http://localhost:3000";
+const serverPort = process.env.PORT || 5000;
 const app = express();
 app.use(cors({
   credentials: true,
   origin: clientUrl 
 }));
+var path = require('path');
+app.use(favicon(path.join(__dirname, '..', 'public', 'favicon.ico')));
 
 // Cookies
 app.set('trust proxy', true);
@@ -44,15 +54,8 @@ app.use(session({
   }
 }));
 
-// Backend routes always begin with /api
-app.use("/api", router);
-router.use(express.json());
-app.listen(serverPort, () => {
-  console.log("Server runs on port %d", serverPort);
-});
-
 // Test route /api/helloworld
-router.get("/helloworld", (req, res) => {
+app.get("/api/helloworld", (req, res) => {
   res.send("Hello world");
 });
 
@@ -63,13 +66,13 @@ function getHash(salt, plain)  {
 }
 
 // Get user
-router.get("/user", (req, res) => {
+app.get("/api/user", (req, res) => {
   res.send(req.session.user || "");
 });
 
 // Login route /api/login
 let sanitize = require("mongo-sanitize");
-router.post("/login", (req, res) => {
+app.post("/api/login", (req, res) => {
   let userParam = sanitize(req.body.user);
   let passParam = sanitize(req.body.pass);
 
@@ -119,6 +122,7 @@ router.post("/login", (req, res) => {
   });
 });
 
+<<<<<<< HEAD
 
 
 
@@ -174,4 +178,16 @@ router.get("/scores", (req, res) => {
     docs = docs.map(p => p.toObject());
     res.send(docs);
   });
+=======
+// Churn react app into static site, and push it
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static(path.join(__dirname, '..', 'build')));
+  app.get('*', function(req, res) {
+    res.sendFile(path.join(__dirname, '..', 'build', 'index.html'));
+  });
+}
+
+app.listen(serverPort, () => {
+  console.log("Server runs on port %d", serverPort);
+>>>>>>> main
 });
