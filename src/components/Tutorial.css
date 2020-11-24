@@ -3,9 +3,9 @@
   background-image: url("../static/tutorial.jpg");
   background-blend-mode: normal, difference, normal;
   background-repeat: no-repeat;
-  background-size: 500px 200px;
-  height: 200px;
-  width: 500px;
+  background-size: 600px 250px;
+  height: 250px;
+  width: 600px;
   font-family: "Just Another Hand";
   font-size: 35px;
   color: purple;
