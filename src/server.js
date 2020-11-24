@@ -138,18 +138,17 @@ app.post("/api/update", (req, res) => {
 
   if (!userParam || !scoreParam) {
     res.send("No headers");
+  } else {
+    User.findOne({user: userParam}, function (err, user) {
+      if (!err) {
+        scoreParam += user.highScore;
+      }
+      const filter = {user: userParam};
+      const update = {highScore: scoreParam};
+      User.findOneAndUpdate(filter, update, function () {res.send("Score updated")});
+      req.session.save();
+    });
   }
-
-  User.findOne({user: userParam}, function (err, user) {
-    if (!err) {
-      scoreParam += user.highScore;
-    }
-    const filter = {user: userParam};
-    const update = {highScore: scoreParam};
-    User.findOneAndUpdate(filter, update, function () {res.send("Score updated")});
-    req.session.save();
-  });
-  
 });
 
 // Get highScore /api/highscore
