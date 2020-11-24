@@ -33,7 +33,7 @@ let cors = require("cors");
 
 // Serving backend
 let clientUrl = process.env.clientUrl || "http://localhost:3000";
-const serverPort = process.env.PORT || 80;
+const serverPort = process.env.PORT || 5000;
 const app = express();
 app.use(cors({
   credentials: true,
