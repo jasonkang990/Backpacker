@@ -30,7 +30,6 @@ check.once("open", () => console.log("Connection successful"));
 // Backend/routing prereqs
 let express = require("express");
 let cors = require("cors");
-let router = express.Router();
 
 // Serving backend
 let clientUrl = process.env.clientUrl || "http://localhost:3000";
@@ -55,20 +54,8 @@ app.use(session({
   }
 }));
 
-// Churn react app into static site, and push it
-if (process.env.NODE_ENV === 'production') {
-  app.use(express.static(path.join(__dirname, '..', 'build')));
-  app.get('*', function(req, res) {
-    res.sendFile(path.join(__dirname, '..', 'build', 'index.html'));
-  });
-}
-
-// Backend routes always begin with /api
-app.use("/api", router);
-router.use(express.json());
-
 // Test route /api/helloworld
-router.get("/helloworld", (req, res) => {
+app.get("/api/helloworld", (req, res) => {
   res.send("Hello world");
 });
 
@@ -79,13 +66,13 @@ function getHash(salt, plain)  {
 }
 
 // Get user
-router.get("/user", (req, res) => {
+app.get("/api/user", (req, res) => {
   res.send(req.session.user || "");
 });
 
 // Login route /api/login
 let sanitize = require("mongo-sanitize");
-router.post("/login", (req, res) => {
+app.post("/api/login", (req, res) => {
   let userParam = sanitize(req.body.user);
   let passParam = sanitize(req.body.pass);
 
@@ -134,6 +121,14 @@ router.post("/login", (req, res) => {
     }
   });
 });
+
+// Churn react app into static site, and push it
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static(path.join(__dirname, '..', 'build')));
+  app.get('*', function(req, res) {
+    res.sendFile(path.join(__dirname, '..', 'build', 'index.html'));
+  });
+}
 
 app.listen(serverPort, () => {
   console.log("Server runs on port %d", serverPort);
