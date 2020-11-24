@@ -36,9 +36,9 @@ router.use(express.json());
 // Serving backend
 let clientUrl;
 if (process.env.NODE_ENV === 'production') {
-  clientUrl = 'https://backpacker426.herokuapp.com';
+  clientUrl = ['https://backpacker426.herokuapp.com', 'https://github.com/jasonkang990/Backpacker/*'];
 } else {
-  clientUrl = "http://localhost:3000";
+  clientUrl = ["http://localhost:3000", "http://localhost:3000/*"];
 }
 const serverPort = process.env.PORT || 5000;
 const app = express();
@@ -135,6 +135,11 @@ mongoose.set('useFindAndModify', false);
 app.post("/api/update", (req, res) => {
   let userParam = sanitize(req.body.user);
   let scoreParam = sanitize(req.body.score);
+
+  if (!userParam || !scoreParam) {
+    res.send("No headers");
+  }
+
   User.findOne({user: userParam}, function (err, user) {
     if (!err) {
       scoreParam += user.highScore;
@@ -149,11 +154,15 @@ app.post("/api/update", (req, res) => {
 
 // Get highScore /api/highscore
 app.get("/api/highscore", (req, res) => {
-  User.findOne({user: req.session.user}).exec(function(err, user) {
-    if (!err) {
-      res.send("" + user.highScore); 
-    }
-  });
+  if (!req.session.user) {
+    res.send("");
+  } else {
+    User.findOne({user: req.session.user}).exec(function(err, user) {
+      if (!err) {
+        res.send("" + user.highScore); 
+      }
+    });
+  }
 });
 
 // Get usernames and scores route /api/scores
