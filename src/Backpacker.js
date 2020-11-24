@@ -49,6 +49,7 @@ export default class Backpacker extends React.Component {
       },
       withCredentials: true
     });
+    
   }
 
   render() {

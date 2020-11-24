@@ -1,5 +1,5 @@
 import React from 'react';
-import {Container, Input, Box, Field, Label, Control, Table} from 'bloomer';
+import {Container, Box, Table} from 'bloomer';
 import {serverUrl} from './config';
 import axios from 'axios';
 

@@ -6,11 +6,7 @@ import { noSquares, noRow } from '../config';
 
 
 export default class Board extends React.Component {
-  constructor(props) {
-    super(props);
-    
-    
-  }
+  
   renderSquare(i, filled, color) {
     if (filled) {
       return (

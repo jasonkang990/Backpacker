@@ -95,6 +95,8 @@ export default class Item extends React.Component {
             case 'm':
               colorry = 'm';
               break;
+            default:
+              break;
           }
           colorToChange.push(colorry);
         }
@@ -113,9 +115,9 @@ export default class Item extends React.Component {
   }
   onDrag(e,data) {
     e.preventDefault();
-    let item =  document.getElementById(`it1`);
+    
   
-    let coords = item.getBoundingClientRect();
+    
 
     this.setState({position:{x:data.x,y:data.y}})
   }
