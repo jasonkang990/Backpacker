@@ -25,14 +25,13 @@ export default class Backpacker extends React.Component {
     this.setState({board:newBoard, score: this.state.score + s});
   }
   resetBoard() {
-    
-    this.setState({board:Array(36).fill('w'), score:0});
     this.updateScore();
-  
+    this.setState({board:Array(36).fill('w'), score:0});
     
   }
 
   async updateScore() {
+    let curr_score = this.state.score;
     let username = await axios({
       method: 'get',
       url: serverUrl + 'user',
@@ -42,8 +41,8 @@ export default class Backpacker extends React.Component {
       method: 'post',
       url: serverUrl + 'update',
       data: {
-        user: username,
-        score: this.state.score,
+        user: username.data,
+        score: curr_score,
       },
       withCredentials: true
     });

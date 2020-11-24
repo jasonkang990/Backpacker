@@ -132,9 +132,16 @@ app.post("/api/login", (req, res) => {
 
 
 // Update score route /api/update
-router.post("/update", (req, res) => {
+app.post("/api/update", (req, res) => {
   let userParam = sanitize(req.body.user);
   let scoreParam = sanitize(req.body.score);
+  console.log(userParam);
+  console.log(scoreParam);
+  User.findOne({user: userParam}, function (err, user) {
+    if (!err) {
+      scoreParam += user.highScore;
+    }
+  });
   const filter = {user: userParam};
   const update = {highScore: scoreParam};
   User.findOneAndUpdate(filter, update);
@@ -143,11 +150,10 @@ router.post("/update", (req, res) => {
 });
 
 // Get usernames and scores route /api/scores
-router.get("/scores", (req, res) => {
+app.get("/api/scores", (req, res) => {
   User.find({}).sort('-highScore').exec(function(err, docs) { 
     if (err) {
       err = err;
-      console.log(err);
     }
     docs = docs.map(p => p.toObject());
     res.send(docs);

@@ -20,6 +20,7 @@ export default class Leaderboard extends React.Component {
             withCredentials: true
         });
         let highScores = response.data;
+        console.log(highScores);
         let topfive = [];
         for (let i = 0; i < 5; i++) {
             topfive[i] = highScores[i];
@@ -29,6 +30,7 @@ export default class Leaderboard extends React.Component {
   
     render() {
         let topfive = this.getHighScores();
+        // console.log(topfive);
         return(
             <Container>
             <form autoComplete="off">
