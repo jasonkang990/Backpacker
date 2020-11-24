@@ -30,8 +30,16 @@ export default class User extends React.Component {
       highScore: highscore.data
     });
   }
+  componentDidUpdate(prevProps) {
+    
+    if (this.props.numShip !== prevProps.numShip) {
+      this.componentDidMount();
+      
+    }
+  }
 
   render() {
+
     if (this.state.user) {
       return(
         <Card className = "userCard">

@@ -14,7 +14,8 @@ export default class Backpacker extends React.Component {
     super(props);
     this.state = {
       board:Array(36).fill('w'),
-      score:0
+      score:0,
+      timesShipped:0,
     };
     this.handleBoard = this.handleBoard.bind(this);
     this.resetBoard = this.resetBoard.bind(this);
@@ -26,9 +27,9 @@ export default class Backpacker extends React.Component {
     this.setState({board:newBoard, score: this.state.score + s});
   }
 
-  resetBoard() {
-    this.updateScore();
-    this.setState({board:Array(36).fill('w'), score:0});
+  async resetBoard() {
+    await this.updateScore();
+    this.setState({board:Array(36).fill('w'), score:0, timesShipped:this.state.timesShipped + 1});
     
   }
 
@@ -58,7 +59,7 @@ export default class Backpacker extends React.Component {
           <ItemSpawn board = {this.state.board} onBoardChange = {this.handleBoard}/>
           <Game board = {this.state.board} onBoardChange = {this.handleBoard}/>
           </div>
-          <User />
+          <User numShip = {this.state.timesShipped}/>
           <Ship resetBoard = {this.resetBoard}/>
           <Score score = {this.state.score}/>
         </div>

@@ -22,7 +22,7 @@ export default class App extends React.Component {
               <li className = "inCube2">
                 <Link to="/login">Login / Signup</Link>
               </li>
-              <li>
+              <li className = "inCube3">
                 <Link to="/scores">Leaderboard</Link>
               </li>
             </ul>

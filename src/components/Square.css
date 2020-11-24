@@ -1,7 +1,6 @@
 .square {
   background: burlywood;
   border: .15em solid black;
-
   margin-top: -1px;
   width: 16%;
   height: 16%;
@@ -42,6 +41,7 @@
   
 } */
 .item-square {
+  border-radius: 12px;
   width: 16%;
   height: 16%;
   min-width: 96px;

@@ -6,5 +6,9 @@
   min-height: 600px;
   max-height: 600px;
   z-index: 999;
-  background: skyblue;
+  
+  background-image: url("../static/table.jpg");
+  background-blend-mode: normal, difference, normal;
+  background-repeat: no-repeat;
+  background-size: 600px 600px;
 }

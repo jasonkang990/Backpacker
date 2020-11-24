@@ -56,12 +56,20 @@ ol, ul {
 .inCube2 {
   position: relative;
   float:left;
+  margin-right: 10px;
   padding: 5px;
   border: .15em solid orange;
   font-weight: bold;
   background-color: orange;
 }
-
+.inCube3 {
+  position: relative;
+  float:left;
+  padding: 5px;
+  border: .15em solid orange;
+  font-weight: bold;
+  background-color: orange;
+}
 .inBox {
   position: relative;
   float:left;

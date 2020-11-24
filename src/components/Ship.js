@@ -6,8 +6,8 @@ export default class Ship extends React.Component {
     super(props)
     this.resetBoard = this.resetBoard.bind(this);
   }
-  resetBoard() {
-    this.props.resetBoard();
+  async resetBoard() {
+    await this.props.resetBoard();
   }
 
   render() {
