@@ -49,14 +49,6 @@ export default class Leaderboard extends React.Component {
         // });
         return(
             <Container>
-            <form autoComplete="off">
-                <Field>
-                    <Label>Search for other players' scores</Label>
-                    <Control>
-                        <Input type='text' placeholder='Search by username'></Input>
-                    </Control>
-                </Field>
-            </form>
             <Box>
                 <Table>
                     <thead>
