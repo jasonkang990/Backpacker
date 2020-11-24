@@ -69,13 +69,13 @@ function getHash(salt, plain)  {
 }
 
 // Get user
-router.get("/user", (req, res) => {
+app.get("/api/user", (req, res) => {
   res.send(req.session.user || "");
 });
 
 // Login route /api/login
 let sanitize = require("mongo-sanitize");
-router.post("/login", (req, res) => {
+app.post("/api/login", (req, res) => {
   let userParam = sanitize(req.body.user);
   let passParam = sanitize(req.body.pass);
 
