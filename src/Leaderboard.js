@@ -42,54 +42,41 @@ export default class Leaderboard extends React.Component {
     }
   
     render() {
-        // let topfive = this.getHighScores().then((value) => {
-        //     console.log(value);
-        //     topfive = value;
-        //     console.log(topfive);
-        // });
         return(
             <Container>
-            <form autoComplete="off">
-                <Field>
-                    <Label>Search for other players' scores</Label>
-                    <Control>
-                        <Input type='text' placeholder='Search by username'></Input>
-                    </Control>
-                </Field>
-            </form>
-            <Box>
-                <Table>
-                    <thead>
-                        <tr>
-                            <th>Username</th>
-                            <th>Score</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <th>{this.state.user0}</th>
-                            <th>{this.state.score0}</th>
-                        </tr>
-                        <tr>
-                            <th>{this.state.user1}</th>
-                            <th>{this.state.score1}</th>
-                        </tr>
-                        <tr>
-                            <th>{this.state.user2}</th>
-                            <th>{this.state.score2}</th>
-                        </tr>
-                        <tr>
-                            <th>{this.state.user3}</th>
-                            <th>{this.state.score3}</th>
-                        </tr>
-                        <tr>    
-                            <th>{this.state.user4}</th>
-                            <th>{this.state.score4}</th>
-                        </tr>
-                    </tbody>
-                </Table>
-            </Box>
-        </Container>
+                <Box>
+                    <Table>
+                        <thead>
+                            <tr>
+                                <th>Username</th>
+                                <th>Score</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th>{this.state.user0}</th>
+                                <th>{this.state.score0}</th>
+                            </tr>
+                            <tr>
+                                <th>{this.state.user1}</th>
+                                <th>{this.state.score1}</th>
+                            </tr>
+                            <tr>
+                                <th>{this.state.user2}</th>
+                                <th>{this.state.score2}</th>
+                            </tr>
+                            <tr>
+                                <th>{this.state.user3}</th>
+                                <th>{this.state.score3}</th>
+                            </tr>
+                            <tr>    
+                                <th>{this.state.user4}</th>
+                                <th>{this.state.score4}</th>
+                            </tr>
+                        </tbody>
+                    </Table>
+                </Box>
+            </Container>
         );
     }
 }
